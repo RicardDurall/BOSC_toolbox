@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_demo.css') }}">
+    <title>BOSC</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/png">
+
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.15.1/build/ol.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+<body>
+
+<div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar" role="banner">
+    <div class="container">
+        <div class="row extra-row align-items-center">
+            <div class="col-11 col-xl-2" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" width="35" height="35">
+                <h1 class="mb-0 site-logo"><a href="{{ url_for('index') }}" class="text-white font-weight-bolder mb-0" style="margin-left: 10px;" >BOSC</a></h1>
+            </div>
+            <div class="col-12 col-md-10 d-none d-xl-block">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <li><a href="https://youtu.be/WITneg41en0" target="_blank"><span style="text-decoration: underline;">Tutorial</span></a></li>
+                        <li class="active"><a href="{{ url_for('demo') }}"><span>Demo</span></a></li>
+                        <li class="has-children">
+                            <a><span>Load</span></a>
+                            <ul class="dropdown arrow-top">
+                                <li class="has-children">
+                                    <a>Image</a>
+                                    <ul class="dropdown">
+                                        <li><a onclick="loadImage()">Single</a></li>
+                                        <li><a onclick="loadCollection()">Collection</a></li>
+                                        <li><a onclick="loadVideo()">Video</a></li>
+                                    </ul>
+                                </li>
+                                <li class="blocked" data-type="masks">
+                                  <a onclick="loadMask()">Masks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a><span>Generate</span></a>
+                            <ul class="dropdown arrow-top">
+                                <li class="has-children">
+                                    <li class="blocked" data-type="masks"><a onclick="generate_mask()"><span>Masks</span></a></li>
+                                    <li class="blocked" data-type="classes"><a onclick="generate_class()"><span>Classes</span></a></li>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('maps') }}"><span>Map</span></a></li>
+                        <li class="has-children">
+                            <a><span>More</span></a>
+                            <ul class="dropdown arrow-top">
+                                <li class="has-children">
+                                    <li><a onclick="openSettings()"><span>Settings</span></a></li>
+                                    <li class="blocked" data-type="classes"><a onclick="saveImage()"><span>Save</span></a></li>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('index') }}"><span>Back</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
+              <a class="site-menu-toggle js-menu-toggle text-white">
+                <span class="icon-menu h3"></span>
+              </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <h5>Settings</h5>
+        <span class="close" onclick="closeSettingsModal()">&times;</span>
+        <div class="modal-content">
+            <div class="form-group" style="padding-top: 20px;">
+                <label for="framesVideo">Frames per Second:</label>
+                <input type="number" id="framesVideo" min="1" max="10" value="2" style="width: 62px; margin-left: 128px;">
+            </div>
+    
+            <div class="form-group">
+                <label for="resolutionImage">Resolution Input:</label>
+                <div class="inline-block">
+                    <select id="resolutionImage" style="margin-left: 150px;">
+                        <option value="0.1">0.1</option>
+                        <option value="0.25">0.25</option>
+                        <option value="0.5" selected>0.5</option>
+                        <option value="0.75" >0.75</option>
+                        <option value="1.0">1.0</option>
+                    </select>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="resolutionSegmentation">Resolution Segmentation:</label>
+                <div class="inline-block">
+                    <select id="resolutionSegmentation" style="margin-left: 85px;">
+                        <option value="0.25">0.25</option>
+                        <option value="0.5" selected>0.5</option>
+                        <option value="0.75">0.75</option>
+                        <option value="1.0">1.0</option>
+                    </select>
+                </div>
+            </div>
+        	<div class="form-group">
+                <label for="threshold" style="padding-top: 20px;">Threshold Clustering:</label>
+                <input type="range" id="threshold" min="0" max="1" step="0.1" value="0.7" style="width: 150px; margin-left: 28px;">
+                <p id="threshold-value" style="margin-left: 255px;"> 0.7</p>
+            </div>
+            <button onclick="applySettings()" style="height: 40px">Apply</button>
+        </div>
+    </div>
+    
+</header>
+
+<section class="tools-board" id="toolsBoard">
+    <div class="row">
+        <label class="title">Options</label>
+        <ul class="options">
+            <li class="option" id="zoom">
+                <img src="{{ url_for('static', filename='images/zoom.svg') }}" alt="">
+                <span>Zoom</span>
+            </li>
+            <li class="option" id="brush">
+                <div class="inline-block-options">
+                    <img src="{{ url_for('static', filename='images/brush.svg') }}" alt="">
+                    <span>Brush</span>
+                    <span class="circle-background" id="color-picker-mask" style="margin-left: 26px; margin-bottom:5px;"></span>
+                </div>
+            </li>
+            <li class="option" id="bucket">
+                <img src="{{ url_for('static', filename='images/bucket.svg') }}" alt="">
+                <span>Bucket</span>
+            </li>
+            <li class="option" id="eraser">
+                <img src="{{ url_for('static', filename='images/eraser.svg') }}" alt="">
+                <span>Eraser</span>
+            </li>
+            <li class="option" id="raw">
+                <img src="{{ url_for('static', filename='images/raw.svg') }}" alt="">
+                <span>Raw</span>
+            </li>
+            <li class="option" id="mask">
+                <img src="{{ url_for('static', filename='images/mask.svg') }}" alt="">
+                <span>Masks</span>
+            </li>
+            <li class="option" id="addMask">
+                <img src="{{ url_for('static', filename='images/addMask.svg') }}" alt="">
+                <span>Add Mask</span>
+            </li>
+            <li class="option">
+                <img src="{{ url_for('static', filename='images/thick.svg') }}" alt="">
+                <span>Line</span>
+                <input type="range" id="size-slider" min="1" max="30" value="5">
+            </li>
+            <li class="option" id="satelite">
+                <img src="{{ url_for('static', filename='images/satelite.svg') }}" alt="">
+                <span>Satellite</span>
+            </li>
+            <li class="option" id="label">
+                <div class="inline-block-options">
+                    <img src="{{ url_for('static', filename='images/tree.svg') }}" alt="">
+                    <span>Classes</span>
+                    <span class="circle-background" id="color-picker-label"  style="background-color: rgb(255, 255, 255); margin-left: 15px; margin-bottom:5px;"></span>
+                </div>
+            </li>
+            <li class="option" id="stats">
+                <img src="{{ url_for('static', filename='images/stats.svg') }}" alt="">
+                <span>Statistics</span>
+                <input type="checkbox" id="checkbox_stats" style=" margin-left: 38px; transform: scale(1.5);">
+            </li>
+            <li class="option" id="label0">
+                <div id="label_gen">
+                    <button id="generateButton"> Add Class</button>
+                </div>
+                <div id="label_other">
+                    <button class="generated-button" style="background-color: rgb(255, 255, 255);">Other</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="tools-board" id="toolsBoard2">
+    <div class="row">
+        <label class="title">Satellite</label>
+        <ul class="options">
+            <li class="option" id="point1">
+                <div class="inline-block-options">
+                    <img src="{{ url_for('static', filename='images/point.svg') }}" alt="">
+                    <span>Point 1</span>
+                    <span class="circle-background" style="background-color: rgb(74, 152, 247);"></span>
+                </div>
+            </li>
+            <li class="option" id="point2">
+                <div class="inline-block-options">
+                    <img src="{{ url_for('static', filename='images/point.svg') }}" alt="">
+                    <span>Point 2</span>
+                    <span class="circle-background" style="background-color: rgb(255, 127, 127);"></span>
+                </div>
+            </li>
+            <li class="option" id="point3">
+                <div class="inline-block-options">
+                    <img src="{{ url_for('static', filename='images/point.svg') }}" alt="">
+                    <span>Point 3</span>
+                    <span class="circle-background" style="background-color: rgb(152,251,152);"></span>
+                </div>
+            </li>
+            <li class="option" id="export">
+                <img src="{{ url_for('static', filename='images/export.svg') }}" alt="">
+                <span>Export points</span>
+            </li>
+            <li class="option" id="clean">
+                <img src="{{ url_for('static', filename='images/clean.svg') }}" alt="">
+                <span>Clean</span>
+            </li>
+            <li class="option" id="save">
+                <img src="{{ url_for('static', filename='images/save.svg') }}" alt="">
+                <span>Save</span>
+            </li>
+            <li class="option" id="back">
+                <img src="{{ url_for('static', filename='images/back.svg') }}" alt="">
+                <span>Back</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<div class="hero">
+</div>
+
+<div class="image-container">
+    <div class="left-container">
+        <canvas class="image-display" id="image" style="background-color: rgba(255, 255, 255, 0);"></canvas>
+        <canvas id="drawing-canvas" style="background-color: rgba(255, 255, 255, 0);"></canvas>
+        <canvas id="label-canvas" style="background-color: rgba(255, 255, 255, 0);"></canvas>
+        <button id="coordinates" style="display: none;">Export</button>
+    </div>
+    <div class="right-container">
+        <canvas class="image-display" id="image_org" style="background-color: rgba(255, 255, 255, 0);"></canvas>
+        <div class="map-group">
+            <div class="image-display" id="map" style="width: 300px; height: 150px;"></div>
+            <input type="range" id="rotation" min="0" max="360" step="1" value="0">
+        </div>
+        <div id="cake"></div>
+        <table id="customers-table">
+            <tr>
+                <th>Color</th>
+                <th>Type</th>
+                <th>Number trees</th>
+                <th>Total area</th>
+                <th>Avg. area</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<input type="file" id="image-upload" accept="image/*" style="display: none;"/>
+<input type="file" id="collection-upload" multiple accept="image/*" style="display: none;"/>
+<input type="file" id="video-upload" accept="viedo/*" style="display: none;"/>
+
+<div id="loading-spinner" class="spinner" style="display: none;"></div>
+<div class="copyright"> Copyright &copy;  2024 BOSC. All rights reserved.</div>
+<script src="{{ url_for('static', filename='js/demo.js') }}"></script>
+
+</body>
+</html>

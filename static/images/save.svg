@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="17.094"
+   height="16.300999"
+   viewBox="0 -0.5 0.4487175 0.42790122"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="save.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.0525"
+     inkscape:cx="126.91839"
+     inkscape:cy="67.965895"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <title
+     id="title1">save_item [#1411]</title>
+  <desc
+     id="desc1">Created with Sketch.</desc>
+  <defs
+     id="defs1" />
+  <g
+     id="Page-1"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="matrix(0.0213675,0,0,0.02139506,0,-0.5)"
+     style="fill:#5a6168;fill-opacity:1">
+    <g
+       id="Dribbble-Light-Preview"
+       transform="translate(-419,-640)"
+       fill="#000000"
+       style="fill:#5a6168;fill-opacity:1">
+      <g
+         id="icons"
+         transform="translate(56,160)"
+         style="fill:#5a6168;fill-opacity:1">
+        <path
+           d="m 370.21875,484 c 0,-0.552 0.4704,-1 1.05,-1 0.5796,0 1.05,0.448 1.05,1 0,0.552 -0.4704,1 -1.05,1 -0.5796,0 -1.05,-0.448 -1.05,-1 z M 381.9,497 c 0,0.552 -0.4704,1 -1.05,1 h -1.05 v -4 c 0,-1.105 -0.93975,-2 -2.1,-2 h -8.4 c -1.16025,0 -2.1,0.895 -2.1,2 v 4 h -1.05 c -0.5796,0 -1.05,-0.448 -1.05,-1 v -9.956 c 0,-0.133 0.0556,-0.26 0.1533,-0.353 L 367.2,484.837 V 486 c 0,1.105 0.93975,2 2.1,2 h 8.4 c 1.16025,0 2.1,-0.895 2.1,-2 v -4 h 1.05 c 0.5796,0 1.05,0.448 1.05,1 z m -4.2,1 h -8.4 v -3 c 0,-0.552 0.4704,-1 1.05,-1 h 6.3 c 0.5796,0 1.05,0.448 1.05,1 z M 369.3,482.837 370.17885,482 H 377.7 v 3 c 0,0.552 -0.4704,1 -1.05,1 h -6.3 c -0.5796,0 -1.05,-0.448 -1.05,-1 z M 381.9,480 h -12.1653 c -0.27825,0 -0.54495,0.105 -0.74235,0.293 l -5.6847,5.414 C 363.11025,485.895 363,486.149 363,486.414 V 498 c 0,1.105 0.93975,2 2.1,2 h 16.8 c 1.16025,0 2.1,-0.895 2.1,-2 v -16 c 0,-1.105 -0.93975,-2 -2.1,-2 z"
+           id="save_item-[#1411]"
+           style="fill:#5a6168;fill-opacity:1" />
+      </g>
+    </g>
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>save_item [#1411]</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

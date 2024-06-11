@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_demo.css') }}">
+    <title>BOSC</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/png">
+
+</head>
+<body>
+
+<div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar" role="banner">
+    <div class="container">
+        <div class="row extra-row align-items-center">
+            <div class="col-11 col-xl-2" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" width="35" height="35">
+                <h1 class="mb-0 site-logo"><a href="{{ url_for('index') }}" class="text-white font-weight-bolder mb-0" style="margin-left: 10px;" >BOSC</a></h1>
+            </div>
+            <div class="col-12 col-md-10 d-none d-xl-block">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <li class="active"><a href="{{ url_for('index') }}"><span>Home</span></a></li>
+                        <li><a href="{{ url_for('demo') }}"><span>Demo</span></a></li>
+                        <li><a href="{{ url_for('docu') }}"><span>Docu</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
+              <a href="#" class="site-menu-toggle js-menu-toggle text-white">
+                <span class="icon-menu h3"></span>
+              </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='images/trim.mp4') }}" type="video/mp4">
+    </video>
+    <p class="hero-text"><b> BOSC</b> 
+        pioneers AI-driven agricultural management, fostering sustainability and environmental harmony. 
+        With aerial observation, we're shaping a brighter, greener tomorrow.
+    </p>
+    <iframe class="hero-thumbnail" src="https://www.youtube.com/embed/WITneg41en0"></iframe>
+</div>
+
+<p class="text-center text-style" style="font-size: 20px; padding-top: 30px; padding-left: 5%; padding-right: 5%; color: rgb(43,65,48);" >
+    Accurate and efficient label of aerial images is essential for informed decision-making and resource allocation, whether in identifying crop types or delineating land-use patterns. 
+    The development of a comprehensive toolbox for manipulating and annotating aerial imagery represents a significant leap forward in remote sensing and spatial analysis. 
+</p>
+
+<p class="text-center" style="font-size: 25px; padding-top: 20px; color: rgb(43,65,48);">BOSC offers a wide range of applications</p>
+
+<div class="row justify-content-center mb-4">
+    <div class="col-md-9 mb-3">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <p style="font-size: 20px; color: rgb(43,65,48);;">Forest Inventory</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <p style="font-size: 20px; color: rgb(43,65,48);;">Agriculture Areas</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <p style="font-size: 20px; color: rgb(43,65,48);;">Urban Planning</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-center">              
+                <img class="imagee" id="imagee1" src="{{ url_for('static', filename='images/forest.jpg') }}">
+                <div class="line " id="line1"></div>
+                <input type="range" id="size-slider1" min="1" max="350" value="35">    
+            </div>
+            <div class="col-md-4 text-center">
+                <img class="imagee " id="imagee2" src="{{ url_for('static', filename='images/saudi.jpg') }}">
+                <div class="line " id="line2"></div>
+                <input type="range" id="size-slider2" min="1" max="350" value="35">
+            </div>
+            <div class="col-md-4 text-center">
+                <img class="imagee" id="imagee3" src="{{ url_for('static', filename='images/semi.jpg') }}">
+                <div class="line" id="line3"></div>
+                <input type="range" id="size-slider3" min="1" max="350" value="35">  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<div class="copyright" style="padding-top: 20px;"> Copyright &copy;  2024 BOSC. All rights reserved.</div>
+
+</body>
+</html>

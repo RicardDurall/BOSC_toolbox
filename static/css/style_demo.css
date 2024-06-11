@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  background: #ffffff;
+  border-radius: 7px;
+}
+
+.tools-board {
+  position: absolute;
+  top: 21%; /* Adjust the top position as needed */
+  left: 20px; /* Adjust the left position as needed */
+  width: 250px;
+  padding: 15px 22px 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 999; /* Ensure the tools-board is above other elements */
+  pointer-events: none;
+}
+
+.tools-board .row {
+  margin-bottom: 20px;
+  margin-left: 1px;
+}
+
+.row .options {
+  list-style: none;
+  margin: 10px 0 0 10px;
+}
+
+.row .options .option {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.option:is(:hover, .active) img {
+  filter: invert(70%) sepia(50%) saturate(2000%) hue-rotate(200deg) brightness(90%) contrast(150%);
+}
+
+.option :where(span, label) {
+  color: #5a616b;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.option:is(:hover, .active) :where(span, label) {
+  color: #007bff;
+}
+  /* Add margin between the buttons */
+.option button {
+  margin-right: 15px; /* You can adjust this value to control the spacing */
+  border-radius: 10%; /* Make the buttons round */
+  width: 85px; /* Set the width to 20px (or adjust as needed) */
+  border: 1px solid; /* Add a transparent border */
+  padding: 0; /* Remove padding */
+}
+
+.option button:active {
+  border-width: 3px; /* Adjust the width as needed */
+}
+
+.option #size-slider {
+  width: 117px;
+  height: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.option #drone-slider {
+  width: 100%;
+  height: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+}
+
+.option #ndvi-slider {
+  width: 100%;
+  height: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 11px;
+}
+
+.option #rotate-slider {
+  width: 100%;
+  height: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.inline-block-options {
+  display: inline-block;
+  vertical-align: middle; /* Align the inline-block vertically */
+}
+
+.circle-background {
+  border-radius: 10%;
+  background-color: #000;
+  border: 1px solid black;
+  width: 70px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle; /* Align the circle vertically with the text and image */
+}
+
+.option .coverage {
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.blocked {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+#toolsBoard{
+  display: block;
+}
+
+#toolsBoard2 {
+  display: none;
+}
+
+.hide-canvas {
+  display: none;
+}
+
+.table-container {
+  position: fixed;
+  top: 10%;
+  left: 80%;
+  display: flex;
+}
+
+.image-container {
+  position: fixed;
+  top: 15%;
+  left: 18%;
+  right: 2%;
+  bottom: 2%;
+  display: flex;
+}
+
+.left-container,
+.right-container{
+  flex: 1; /* Distribute the available space equally between left and right containers */
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px; /* Add 5px margin on both sides */
+  position: relative;
+}
+
+.left-container,
+.right-container {
+  max-height: 80vh; /* Limit the vertical height to 70% of the viewport height */
+}
+
+.image-display{
+  position: absolute;
+  z-index: 0;
+  left: 50%; /* Move the canvas 50% to the right */
+  transform: translateX(-50%); /* Adjust to center the canvas */
+}
+
+#drawing-canvas {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.5;
+  left: 50%; /* Move the canvas 50% to the right */
+  transform: translateX(-50%); /* Adjust to center the canvas */
+  display: none;
+}
+
+#label-canvas {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.5;
+  left: 50%; /* Move the canvas 50% to the right */
+  transform: translateX(-50%); /* Adjust to center the canvas */
+  display: none;
+}
+
+#cake {
+  position: absolute; /* Position the cake absolutely */
+  left: 50%; /* Move it to the horizontal center */
+  transform: translateX(-50%); /* Center it horizontally */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+  width: 250px; /* Set the width of the cake */
+  height: 250px; /* Set the height of the cake */
+}
+
+#customers-table {
+  position: absolute; /* Position the table absolutely */
+  top: calc(250px + 20px); /* Position just below the cake */
+  left: 50%; /* Move it to the horizontal center */
+  transform: translateX(-50%); /* Center it horizontally */
+  width: 90%;
+  padding-left: 10%;
+}
+
+#color-picker-mask {
+  background-color: rgb(74, 152, 247);
+  /* Add other styles as needed for the element */
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  }
+  
+  @keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 400px; 
+    max-height: 400px;
+}
+
+.modal-content {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.inline-block {
+  display: inline-block;
+  width: 60px; 
+  height: 40px;
+}
+/* Style for the close button */
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.map-group {
+  display: none;
+}
+#coordinates {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  margin-right: 15px; /* You can adjust this value to control the spacing */
+  border-radius: 10%; /* Make the buttons round */
+  width: 85px; /* Set the width to 20px (or adjust as needed) */
+  border: 1px solid; /* Add a transparent border */
+  padding: 0; /* Remove padding */
+}
+#rotation {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}

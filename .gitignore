@@ -1,0 +1,7 @@
+*.pyc 
+*.pth
+*.pt
+*.JPG
+*.png
+*.mp4
+uploads/
