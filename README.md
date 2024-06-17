@@ -2,7 +2,7 @@
     <img src="static/images/title.png" style="width: 100%;">
 </div>
 
-BOSC is an innovative tool that leverages AI for advanced agricultural management, promoting sustainability and environmental harmony.
+[BOSC](https://arxiv.org/abs/2406.05833) is an innovative tool that leverages AI for advanced agricultural management, promoting sustainability and environmental harmony.
 Through aerial observation, we are paving the way for a brighter, greener future.
 
 Accurate and efficient label of aerial images is essential for informed decision-making and resource allocation, whether in identifying crop types or delineating land-use patterns. 
